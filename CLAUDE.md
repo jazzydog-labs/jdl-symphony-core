@@ -1,0 +1,17 @@
+Follow the instructions in backend_spec.md to initialize the repo.
+
+Make sure all the just commands run and the tests pass.
+
+## Implementation Progress
+
+Track progress in `jdl-symphony-core/todo.md`
+See high-level implementation plan in `jdl-symphony-core/project-plan.md`
+
+Current status: Initial project structure created, dependencies installed. Next step is to implement database configuration and models.
+
+When resuming work:
+1. Check todo.md for current progress
+2. Review project-plan.md for implementation strategy
+3. Continue from the next uncompleted task
+4. Make commits at each major milestone (as outlined in project plan)
+5. Ensure tests pass before each commit
