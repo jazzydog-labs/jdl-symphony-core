@@ -10,7 +10,7 @@ Please check all the things you have to do, and before you start doing them chec
 Track progress in `jdl-symphony-core/todo.md`
 See high-level implementation plan in `jdl-symphony-core/project-plan.md`
 
-Current status: Initial project structure created, dependencies installed. Next step is to implement database configuration and models.
+Current status: Database configuration and FastAPI foundation completed (Commit 2). Next step is to implement domain models (UserProfile, Workspace, Repo, Vault).
 
 When resuming work:
 1. Check todo.md for current progress
