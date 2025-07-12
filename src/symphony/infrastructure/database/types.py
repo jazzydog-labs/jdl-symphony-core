@@ -8,14 +8,14 @@ from sqlalchemy import String, TypeDecorator
 
 class UUIDType(TypeDecorator[UUID]):
     """Platform-independent UUID type.
-    
+
     Uses char(32) to store UUID as string for SQLite compatibility.
     PostgreSQL has native UUID support, but we use string for consistency.
     """
-    
+
     impl = String(32)
     cache_ok = True
-    
+
     def process_bind_param(self, value: Any, dialect: Any) -> str | None:
         """Convert UUID to string for database storage."""
         if value is None:
@@ -26,7 +26,7 @@ class UUIDType(TypeDecorator[UUID]):
             # If it's already a string, ensure it's just the hex without dashes
             return value.replace("-", "")
         raise ValueError(f"Invalid UUID value: {value}")
-    
+
     def process_result_value(self, value: Any, dialect: Any) -> UUID | None:
         """Convert string from database to UUID."""
         if value is None:

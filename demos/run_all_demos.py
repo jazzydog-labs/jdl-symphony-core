@@ -19,6 +19,7 @@ DEMOS = [
     ("Database Models & ORM Mapping", "demo_database_models.py", False),
     ("Repository Pattern & Unit of Work", "demo_repositories.py", False),
     ("Domain Services", "demo_domain_services.py", False),
+    ("Application Layer (CQRS)", "demo_application_layer.py", False),
     ("Database Connection", "demo_database.py", True),
     ("API Endpoints", "demo_api.py", True),
 ]
@@ -76,6 +77,7 @@ async def run_all_demos():
         "• Database Models & ORM Mapping\n"
         "• Repository Pattern & Unit of Work\n"
         "• Domain Services & Business Logic Orchestration\n"
+        "• Application Layer with CQRS Patterns\n"
         "• Database Connection & Alembic\n"
         "• API Health Check & Endpoints",
         border_style="blue"
@@ -129,6 +131,7 @@ async def run_all_demos():
         "• SQLAlchemy ORM models with relationships\n"
         "• Repository pattern with Unit of Work\n"
         "• Domain services orchestrating business logic\n"
+        "• Application layer with CQRS patterns\n"
         "• Async SQLAlchemy database setup\n"
         "• FastAPI application structure\n"
         "• Health monitoring endpoints\n\n"

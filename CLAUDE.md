@@ -11,7 +11,7 @@ Track progress in `jdl-symphony-core/todo.md`
 See high-level implementation plan in `jdl-symphony-core/project-plan.md`
 See architectural patterns and conventions in `jdl-symphony-core/architecture.md`
 
-Current status: Domain services layer completed (Commit 6). Next step is to implement application layer with CQRS patterns (Commit 7).
+Current status: Application layer with CQRS patterns completed (Commit 7). Next step is to implement API schemas and routes (Commit 8).
 
 When resuming work:
 1. Check todo.md for current progress
@@ -80,6 +80,16 @@ This ensures continuity between sessions and helps maintain accurate project sta
 - Comprehensive exception handling with domain-specific errors
 - Async/await pattern throughout with proper transaction boundaries
 - Demo script shows complete CRUD operations and business rule enforcement
+
+### Application Layer Implementation (CQRS)
+- Command/Query Responsibility Segregation (CQRS) pattern implementation
+- Separate command handlers for write operations and query handlers for read operations
+- Strongly typed commands and queries with data transfer objects (DTOs)
+- Command bus and query bus for dispatching operations to appropriate handlers
+- ApplicationService orchestrates all use cases with unified interface
+- Each operation is handled by single-purpose, focused handlers
+- Type-safe operations with comprehensive validation and error handling
+- Demo script showcases complete CQRS workflow with all entity operations
 
 ## Creating working demo before each commit
 Before each of your commits, create a fully working demo showing off the features you have added that can be run, end-to-end, with `just demo`. `just demo` runs all of the feature demos, (e.g. `just demo-domain-models`). Test the newly added demo, and all the demos, before commiting, and fix anything needed to make them work.

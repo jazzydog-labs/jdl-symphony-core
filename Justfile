@@ -73,3 +73,6 @@ demo-repositories:
 
 demo-domain-services:
     uv run python demos/demo_domain_services.py
+
+demo-application-layer:
+    uv run python demos/demo_application_layer.py

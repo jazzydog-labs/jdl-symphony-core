@@ -155,6 +155,25 @@ class UserProfileService:
                 raise UserProfileNotFoundError(f"Username: {username}")
             return user_profile
 
+    async def get_user_profile_by_email(self, email: str) -> UserProfile:
+        """
+        Get a user profile by email.
+
+        Args:
+            email: Email to search for
+
+        Returns:
+            User profile
+
+        Raises:
+            UserProfileNotFoundError: If user doesn't exist
+        """
+        async with self._uow:
+            user_profile = await self._uow.user_profiles.get_by_email(email)
+            if not user_profile:
+                raise UserProfileNotFoundError(f"Email: {email}")
+            return user_profile
+
     async def delete_user_profile(self, user_id: UUID) -> None:
         """
         Delete a user profile and all associated data.
