@@ -15,6 +15,7 @@ console = Console()
 # List of demos to run
 DEMOS = [
     ("Configuration System", "demo_config.py", False),
+    ("Domain Models", "demo_domain_models.py", False),
     ("Database Connection", "demo_database.py", True),
     ("API Endpoints", "demo_api.py", True),
 ]

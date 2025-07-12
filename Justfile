@@ -1,24 +1,29 @@
 # Development commands
 
+# List available commands
+default:
+    @just --list
+
 # Install dependencies
 install:
     uv sync
 
 # Run linting
 lint:
-    hatch run lint:all
+    uv run ruff check src tests
+    uv run ruff format --check src tests
 
 # Run type checking
 typecheck:
-    hatch run typecheck:check
+    uv run pyright src
 
 # Run tests with coverage
 test:
-    hatch run test:cov
+    uv run pytest tests/ -v --cov=symphony --cov-report=term-missing
 
 # Run development server
 run:
-    hatch run dev:server
+    uv run uvicorn symphony.main:app --reload --host 0.0.0.0 --port 8000
 
 # Start database
 db-up:
@@ -30,11 +35,11 @@ db-down:
 
 # Run database migrations
 db-migrate:
-    hatch run alembic upgrade head
+    uv run alembic upgrade head
 
 # Generate new migration
 db-revision name:
-    hatch run alembic revision --autogenerate -m "{{name}}"
+    uv run alembic revision --autogenerate -m "{{name}}"
 
 # Build docker image
 build:
@@ -56,3 +61,6 @@ demo-database:
 
 demo-api:
     uv run python demos/demo_api.py
+
+demo-domain-models:
+    uv run python demos/demo_domain_models.py
