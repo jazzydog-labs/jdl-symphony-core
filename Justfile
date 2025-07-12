@@ -43,3 +43,16 @@ build:
 # Build debug docker image
 build-debug:
     docker buildx build --build-arg DEBUG_IMAGE=true -t jdl-symphony-core:debug .
+
+# Demo commands
+demo:
+    uv run python demos/run_all_demos.py
+
+demo-config:
+    uv run python demos/demo_config.py
+
+demo-database:
+    uv run python demos/demo_database.py
+
+demo-api:
+    uv run python demos/demo_api.py

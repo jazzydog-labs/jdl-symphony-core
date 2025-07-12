@@ -10,7 +10,7 @@ Please check all the things you have to do, and before you start doing them chec
 Track progress in `jdl-symphony-core/todo.md`
 See high-level implementation plan in `jdl-symphony-core/project-plan.md`
 
-Current status: Database configuration and FastAPI foundation completed (Commit 2). Next step is to implement domain models (UserProfile, Workspace, Repo, Vault).
+Current status: Database configuration and FastAPI foundation completed (Commit 2). Next  step is to implement domain models (UserProfile, Workspace, Repo, Vault).
 
 When resuming work:
 1. Check todo.md for current progress
@@ -18,3 +18,7 @@ When resuming work:
 3. Continue from the next uncompleted task
 4. Make commits at each major milestone (as outlined in project plan)
 5. Ensure tests pass before each commit
+
+
+## Creating working demo before each commit
+Before each of your commits, create a fully working demo showing off the features you have added that can be run, end-to-end, with `just demo`. `just demo` runs all of the feature demos, (e.g. `just demo-domain-models`) in
