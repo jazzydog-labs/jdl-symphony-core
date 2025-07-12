@@ -9,8 +9,9 @@ Please check all the things you have to do, and before you start doing them chec
 
 Track progress in `jdl-symphony-core/todo.md`
 See high-level implementation plan in `jdl-symphony-core/project-plan.md`
+See architectural patterns and conventions in `jdl-symphony-core/architecture.md`
 
-Current status: Database models and initial migration implemented (Commit 4). Next step is to implement repository interfaces and concrete implementations (Commit 5).
+Current status: Repository interfaces and concrete implementations completed (Commit 5). Next step is to implement domain services and service layer (Commit 6).
 
 When resuming work:
 1. Check todo.md for current progress
@@ -24,8 +25,9 @@ When resuming work:
 After making a commit, ALWAYS:
 1. Update the "Current status" section in CLAUDE.md to reflect what was just completed
 2. Update todo.md to mark completed items and reflect current progress
-3. If you used any development strategies or patterns not captured in CLAUDE.md or referenced files, document them
-4. If you discovered any important patterns or decisions during implementation, add them to the relevant documentation
+3. Update architecture.md if you've made any architectural decisions or changes
+4. If you used any development strategies or patterns not captured in CLAUDE.md or referenced files, document them
+5. If you discovered any important patterns or decisions during implementation, add them to the relevant documentation
 
 This ensures continuity between sessions and helps maintain accurate project state.
 
@@ -58,6 +60,16 @@ This ensures continuity between sessions and helps maintain accurate project sta
 - When `demo_mode=True`, uses in-memory SQLite instead of PostgreSQL
 - Demos are isolated from production database - no risk of data pollution
 - All demos use `get_demo_settings()` to ensure they run in safe mode
+
+### Repository Pattern Implementation
+- Abstract repository interfaces in domain layer following clean architecture
+- Generic base repository with CRUD operations
+- Concrete SQLAlchemy implementations with domain-to-database model conversion
+- Repository-specific methods for domain queries (e.g., get_by_username)
+- Unit of Work pattern for transaction management across repositories
+- Demo mode support with separate database connection
+- Type-safe generic implementation using Python's Generic[T] pattern
+- Added `reportUnknownVariableType = false` to pyright config for dict[str, Any] annotations
 
 ## Creating working demo before each commit
 Before each of your commits, create a fully working demo showing off the features you have added that can be run, end-to-end, with `just demo`. `just demo` runs all of the feature demos, (e.g. `just demo-domain-models`). Test the newly added demo, and all the demos, before commiting, and fix anything needed to make them work.

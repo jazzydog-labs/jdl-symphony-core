@@ -135,6 +135,7 @@ pythonVersion = "3.11"
 typeCheckingMode = "strict"
 reportMissingImports = true
 reportMissingTypeStubs = false
+reportUnknownVariableType = false
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

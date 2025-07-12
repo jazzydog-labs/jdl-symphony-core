@@ -17,6 +17,7 @@ DEMOS = [
     ("Configuration System", "demo_config.py", False),
     ("Domain Models", "demo_domain_models.py", False),
     ("Database Models & ORM Mapping", "demo_database_models.py", False),
+    ("Repository Pattern & Unit of Work", "demo_repositories.py", False),
     ("Database Connection", "demo_database.py", True),
     ("API Endpoints", "demo_api.py", True),
 ]
@@ -72,6 +73,7 @@ async def run_all_demos():
         "• Configuration System\n"
         "• Domain Models with Business Logic\n"
         "• Database Models & ORM Mapping\n"
+        "• Repository Pattern & Unit of Work\n"
         "• Database Connection & Alembic\n"
         "• API Health Check & Endpoints",
         border_style="blue"

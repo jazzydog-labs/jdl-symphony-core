@@ -15,7 +15,7 @@ from symphony.config import Settings, get_settings
 def get_engine(settings: Settings | None = None) -> AsyncEngine:
     """
     Get SQLAlchemy async engine.
-    
+
     Uses demo database URL if demo_mode is True in settings.
     """
     if settings is None:
@@ -23,7 +23,7 @@ def get_engine(settings: Settings | None = None) -> AsyncEngine:
 
     # Use demo database URL if in demo mode
     database_url = settings.demo_database_url if settings.demo_mode else str(settings.database_url)
-    
+
     # SQLite doesn't support pool configuration
     if settings.demo_mode:
         return create_async_engine(
@@ -31,7 +31,7 @@ def get_engine(settings: Settings | None = None) -> AsyncEngine:
             echo=settings.debug,
             future=True,
         )
-    
+
     # PostgreSQL with full pool configuration
     return create_async_engine(
         database_url,
@@ -65,7 +65,7 @@ def _ensure_defaults() -> None:
 def get_session_maker(settings: Settings | None = None) -> async_sessionmaker[AsyncSession]:
     """
     Get session maker for creating database sessions.
-    
+
     If settings provided with demo_mode=True, creates a new session maker
     with demo database. Otherwise returns the default session maker.
     """
@@ -86,7 +86,7 @@ def get_session_maker(settings: Settings | None = None) -> async_sessionmaker[As
 async def get_db(settings: Settings | None = None) -> AsyncGenerator[AsyncSession, None]:
     """
     Dependency to get database session.
-    
+
     Args:
         settings: Optional settings to override defaults (e.g., for demo mode)
     """

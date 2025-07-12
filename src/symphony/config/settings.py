@@ -1,6 +1,5 @@
 """Symphony API configuration settings."""
 
-import os
 from functools import lru_cache
 from typing import Any
 
@@ -29,7 +28,7 @@ class Settings(BaseSettings):
     postgres_password: str
     postgres_db: str
     database_url: PostgresDsn | None = None
-    
+
     # Demo Settings
     demo_mode: bool = False
     demo_database_url: str = "sqlite+aiosqlite:///:memory:"
