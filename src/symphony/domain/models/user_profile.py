@@ -106,3 +106,7 @@ class UserProfile:
             raise ValueError(f"Invalid email: {new_email}")
 
         self.updated_at = datetime.now(UTC)
+
+    def update_timestamp(self) -> None:
+        """Update the updated_at timestamp to current time."""
+        self.updated_at = datetime.now(UTC)

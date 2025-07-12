@@ -3,6 +3,7 @@
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 from uuid import UUID, uuid4
 
 
@@ -20,6 +21,8 @@ class Vault:
     name: str = ""
     path: str = ""
     workspace_id: UUID = field(default_factory=uuid4)
+    metadata: dict[str, Any] = field(default_factory=dict)
+    is_locked: bool = False
     created_at: datetime = field(default_factory=lambda: datetime.now(UTC))
     updated_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
@@ -104,4 +107,18 @@ class Vault:
             self.name = old_name
             raise ValueError(f"Invalid vault name: {new_name}")
 
+        self.updated_at = datetime.now(UTC)
+
+    def update_timestamp(self) -> None:
+        """Update the updated_at timestamp to current time."""
+        self.updated_at = datetime.now(UTC)
+
+    def lock(self) -> None:
+        """Lock the vault to prevent access."""
+        self.is_locked = True
+        self.updated_at = datetime.now(UTC)
+
+    def unlock(self) -> None:
+        """Unlock the vault to allow access."""
+        self.is_locked = False
         self.updated_at = datetime.now(UTC)

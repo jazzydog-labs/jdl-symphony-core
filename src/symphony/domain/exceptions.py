@@ -39,6 +39,13 @@ class AlreadyExistsError(DomainError):
 
 
 # User-specific exceptions
+class UserProfileNotFoundError(NotFoundError):
+    """Raised when a user profile is not found."""
+
+    def __init__(self, user_id: str):
+        super().__init__("UserProfile", str(user_id))
+
+
 class UserNotFoundError(NotFoundError):
     """Raised when a user profile is not found."""
 
@@ -67,12 +74,26 @@ class InvalidEmailError(ValidationError):
         super().__init__(message, field="email")
 
 
+class UsernameAlreadyExistsError(AlreadyExistsError):
+    """Raised when username is already taken."""
+
+    def __init__(self, username: str):
+        super().__init__("UserProfile", "username", username)
+
+
+class EmailAlreadyExistsError(AlreadyExistsError):
+    """Raised when email is already taken."""
+
+    def __init__(self, email: str):
+        super().__init__("UserProfile", "email", email)
+
+
 # Workspace-specific exceptions
 class WorkspaceNotFoundError(NotFoundError):
     """Raised when a workspace is not found."""
 
     def __init__(self, workspace_id: str):
-        super().__init__("Workspace", workspace_id)
+        super().__init__("Workspace", str(workspace_id))
 
 
 class WorkspaceNameConflictError(AlreadyExistsError):
@@ -96,12 +117,27 @@ class WorkspaceDeletionNotAllowedError(DomainError):
         super().__init__(message, code="WORKSPACE_DELETION_NOT_ALLOWED")
 
 
+class WorkspaceLimitExceeded(DomainError):
+    """Raised when user has reached maximum workspace limit."""
+
+    def __init__(self):
+        super().__init__("User has reached maximum workspace limit (50)", code="WORKSPACE_LIMIT_EXCEEDED")
+
+
+class WorkspaceNotOwnedByUserError(DomainError):
+    """Raised when user tries to access workspace they don't own."""
+
+    def __init__(self, workspace_id: str, user_id: str):
+        message = f"Workspace {workspace_id} is not owned by user {user_id}"
+        super().__init__(message, code="WORKSPACE_NOT_OWNED")
+
+
 # Repo-specific exceptions
 class RepoNotFoundError(NotFoundError):
     """Raised when a repository is not found."""
 
     def __init__(self, repo_id: str):
-        super().__init__("Repo", repo_id)
+        super().__init__("Repo", str(repo_id))
 
 
 class RepoNameConflictError(AlreadyExistsError):
@@ -125,12 +161,26 @@ class InvalidRemoteUrlError(ValidationError):
         super().__init__(message, field="remote_url")
 
 
+class DuplicateRepoNameError(AlreadyExistsError):
+    """Raised when repo name already exists in workspace."""
+
+    def __init__(self, repo_name: str, workspace_id: str):
+        super().__init__("Repo", "name", f"{repo_name} in workspace {workspace_id}")
+
+
+class RepoLimitExceeded(DomainError):
+    """Raised when workspace has reached maximum repo limit."""
+
+    def __init__(self):
+        super().__init__("Workspace has reached maximum repo limit (100)", code="REPO_LIMIT_EXCEEDED")
+
+
 # Vault-specific exceptions
 class VaultNotFoundError(NotFoundError):
     """Raised when a vault is not found."""
 
     def __init__(self, vault_id: str):
-        super().__init__("Vault", vault_id)
+        super().__init__("Vault", str(vault_id))
 
 
 class VaultNameConflictError(AlreadyExistsError):
@@ -145,3 +195,17 @@ class InvalidVaultPathError(ValidationError):
 
     def __init__(self, message: str):
         super().__init__(message, field="path")
+
+
+class DuplicateVaultNameError(AlreadyExistsError):
+    """Raised when vault name already exists in workspace."""
+
+    def __init__(self, vault_name: str, workspace_id: str):
+        super().__init__("Vault", "name", f"{vault_name} in workspace {workspace_id}")
+
+
+class VaultLimitExceeded(DomainError):
+    """Raised when workspace has reached maximum vault limit."""
+
+    def __init__(self):
+        super().__init__("Workspace has reached maximum vault limit (20)", code="VAULT_LIMIT_EXCEEDED")

@@ -18,6 +18,7 @@ DEMOS = [
     ("Domain Models", "demo_domain_models.py", False),
     ("Database Models & ORM Mapping", "demo_database_models.py", False),
     ("Repository Pattern & Unit of Work", "demo_repositories.py", False),
+    ("Domain Services", "demo_domain_services.py", False),
     ("Database Connection", "demo_database.py", True),
     ("API Endpoints", "demo_api.py", True),
 ]
@@ -74,6 +75,7 @@ async def run_all_demos():
         "• Domain Models with Business Logic\n"
         "• Database Models & ORM Mapping\n"
         "• Repository Pattern & Unit of Work\n"
+        "• Domain Services & Business Logic Orchestration\n"
         "• Database Connection & Alembic\n"
         "• API Health Check & Endpoints",
         border_style="blue"
@@ -125,11 +127,12 @@ async def run_all_demos():
         "• Pydantic-based configuration with validation\n"
         "• Domain models with business logic and validation\n"
         "• SQLAlchemy ORM models with relationships\n"
-        "• Domain-to-database model mapping\n"
+        "• Repository pattern with Unit of Work\n"
+        "• Domain services orchestrating business logic\n"
         "• Async SQLAlchemy database setup\n"
         "• FastAPI application structure\n"
         "• Health monitoring endpoints\n\n"
-        "[dim]Next: Repository implementations and CRUD operations[/dim]",
+        "[dim]Next: API schemas and routes implementation[/dim]",
         border_style="green"
     ))
 

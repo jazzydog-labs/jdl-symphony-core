@@ -8,6 +8,7 @@ from sqlalchemy import JSON, DateTime, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from symphony.infrastructure.database.base import Base
+from symphony.infrastructure.database.types import UUIDType
 
 if TYPE_CHECKING:
     from symphony.infrastructure.database.models.workspace import WorkspaceDB
@@ -18,7 +19,7 @@ class UserProfileDB(Base):
 
     __tablename__ = "user_profiles"
 
-    id: Mapped[UUID] = mapped_column(primary_key=True)
+    id: Mapped[UUID] = mapped_column(UUIDType, primary_key=True)
     username: Mapped[str] = mapped_column(String(255), unique=True, nullable=False, index=True)
     email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False, index=True)
     preferences: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False, default=dict)

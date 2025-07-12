@@ -6,7 +6,7 @@
 - [x] Set up database configuration and models
 - [x] Implement domain models (UserProfile, Workspace, Repo, Vault)
 - [x] Implement repositories and database layer
-- [ ] Implement domain services
+- [x] Implement domain services
 - [ ] Implement API routes and schemas
 - [ ] Set up testing infrastructure
 - [ ] Implement Docker configuration
@@ -61,8 +61,20 @@
 - **Created demo script (`just demo-repositories`) showcasing repository pattern**
 - **Fixed all linting and type checking issues**
 
+- **Implemented domain services layer:**
+  - UserProfileService with user management and validation
+  - WorkspaceService with ownership checks and resource limits
+  - RepoService with Git repository management
+  - VaultService with lock/unlock functionality
+  - All services enforce business rules and ownership validation
+  - Comprehensive exception handling with domain-specific errors
+- **Created demo script (`just demo-domain-services`) showcasing service layer**
+- **Fixed all type checking issues including UUID to string conversions**
+- **Added custom UUIDType for SQLite compatibility**
+- **Updated all domain models with missing fields and methods**
+
 🚧 **Next Steps:**
-1. Implement domain services (Commit 6)
+1. Implement application layer with CQRS patterns (Commit 7)
 2. Create API schemas and routes
 3. Set up testing infrastructure
 

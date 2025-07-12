@@ -55,6 +55,8 @@ class SQLAlchemyVaultRepository(SQLAlchemyRepository[Vault, VaultDB], VaultRepos
             name=model.name,
             path=model.path,
             workspace_id=model.workspace_id,
+            metadata=model.meta_data,
+            is_locked=model.is_locked,
             created_at=model.created_at,
             updated_at=model.updated_at,
         )
@@ -66,6 +68,8 @@ class SQLAlchemyVaultRepository(SQLAlchemyRepository[Vault, VaultDB], VaultRepos
             name=entity.name,
             path=entity.path,
             workspace_id=entity.workspace_id,
+            meta_data=entity.metadata,
+            is_locked=entity.is_locked,
             created_at=entity.created_at,
             updated_at=entity.updated_at,
         )

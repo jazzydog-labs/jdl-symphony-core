@@ -119,6 +119,10 @@ class Workspace:
         self.description = description
         self.updated_at = datetime.now(UTC)
 
+    def update_timestamp(self) -> None:
+        """Update the updated_at timestamp to current time."""
+        self.updated_at = datetime.now(UTC)
+
     def rename(self, new_name: str) -> None:
         """
         Rename the workspace with validation.

@@ -70,3 +70,6 @@ demo-database-models:
 
 demo-repositories:
     uv run python demos/demo_repositories.py
+
+demo-domain-services:
+    uv run python demos/demo_domain_services.py

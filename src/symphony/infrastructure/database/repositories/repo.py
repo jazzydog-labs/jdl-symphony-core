@@ -56,6 +56,8 @@ class SQLAlchemyRepoRepository(SQLAlchemyRepository[Repo, RepoDB], RepoRepositor
             path=model.path,
             workspace_id=model.workspace_id,
             remote_url=model.remote_url,
+            metadata=model.meta_data,
+            last_synced=model.last_synced,
             created_at=model.created_at,
             updated_at=model.updated_at,
         )
@@ -68,6 +70,8 @@ class SQLAlchemyRepoRepository(SQLAlchemyRepository[Repo, RepoDB], RepoRepositor
             path=entity.path,
             workspace_id=entity.workspace_id,
             remote_url=entity.remote_url,
+            meta_data=entity.metadata,
+            last_synced=entity.last_synced,
             created_at=entity.created_at,
             updated_at=entity.updated_at,
         )

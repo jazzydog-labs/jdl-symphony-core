@@ -3,6 +3,7 @@
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 from uuid import UUID, uuid4
 
 
@@ -20,6 +21,8 @@ class Repo:
     path: str = ""
     workspace_id: UUID = field(default_factory=uuid4)
     remote_url: str | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
+    last_synced: datetime | None = None
     created_at: datetime = field(default_factory=lambda: datetime.now(UTC))
     updated_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
@@ -146,4 +149,13 @@ class Repo:
             self.name = old_name
             raise ValueError(f"Invalid repo name: {new_name}")
 
+        self.updated_at = datetime.now(UTC)
+
+    def update_timestamp(self) -> None:
+        """Update the updated_at timestamp to current time."""
+        self.updated_at = datetime.now(UTC)
+
+    def mark_synced(self) -> None:
+        """Mark the repository as synced with remote."""
+        self.last_synced = datetime.now(UTC)
         self.updated_at = datetime.now(UTC)

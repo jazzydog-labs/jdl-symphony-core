@@ -11,7 +11,7 @@ Track progress in `jdl-symphony-core/todo.md`
 See high-level implementation plan in `jdl-symphony-core/project-plan.md`
 See architectural patterns and conventions in `jdl-symphony-core/architecture.md`
 
-Current status: Repository interfaces and concrete implementations completed (Commit 5). Next step is to implement domain services and service layer (Commit 6).
+Current status: Domain services layer completed (Commit 6). Next step is to implement application layer with CQRS patterns (Commit 7).
 
 When resuming work:
 1. Check todo.md for current progress
@@ -71,5 +71,16 @@ This ensures continuity between sessions and helps maintain accurate project sta
 - Type-safe generic implementation using Python's Generic[T] pattern
 - Added `reportUnknownVariableType = false` to pyright config for dict[str, Any] annotations
 
+### Domain Services Implementation
+- Service layer orchestrates business logic across multiple aggregates
+- Each entity has dedicated service (UserProfileService, WorkspaceService, RepoService, VaultService)
+- Services enforce business rules and limits (50 workspaces/user, 100 repos/workspace, 20 vaults/workspace)
+- Ownership validation for all operations ensuring users can only access their resources
+- Lock/unlock functionality for vaults with proper business logic
+- Comprehensive exception handling with domain-specific errors
+- Async/await pattern throughout with proper transaction boundaries
+- Demo script shows complete CRUD operations and business rule enforcement
+
 ## Creating working demo before each commit
 Before each of your commits, create a fully working demo showing off the features you have added that can be run, end-to-end, with `just demo`. `just demo` runs all of the feature demos, (e.g. `just demo-domain-models`). Test the newly added demo, and all the demos, before commiting, and fix anything needed to make them work.
+

@@ -8,6 +8,7 @@ from sqlalchemy import JSON, DateTime, Enum, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from symphony.infrastructure.database.base import Base
+from symphony.infrastructure.database.types import UUIDType
 
 if TYPE_CHECKING:
     from symphony.infrastructure.database.models.repo import RepoDB
@@ -20,11 +21,11 @@ class WorkspaceDB(Base):
 
     __tablename__ = "workspaces"
 
-    id: Mapped[UUID] = mapped_column(primary_key=True)
+    id: Mapped[UUID] = mapped_column(UUIDType, primary_key=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     user_profile_id: Mapped[UUID] = mapped_column(
-        ForeignKey("user_profiles.id", ondelete="CASCADE"), nullable=False, index=True
+        UUIDType, ForeignKey("user_profiles.id", ondelete="CASCADE"), nullable=False, index=True
     )
     workspace_type: Mapped[str] = mapped_column(
         Enum("general", "client", "personal", "research", name="workspace_type_enum"),
