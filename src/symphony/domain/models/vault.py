@@ -49,9 +49,7 @@ class Vault:
             return False
         # Check for special characters that might cause issues
         invalid_chars = {"<", ">", ":", '"', "|", "?", "*", "\0"}
-        if any(char in self.name for char in invalid_chars):
-            return False
-        return True
+        return not any(char in self.name for char in invalid_chars)
 
     def validate_path(self) -> bool:
         """

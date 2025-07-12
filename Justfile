@@ -64,3 +64,6 @@ demo-api:
 
 demo-domain-models:
     uv run python demos/demo_domain_models.py
+
+demo-database-models:
+    uv run python demos/demo_database_models.py

@@ -1,4 +1,5 @@
 """Symphony API main application."""
+
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -6,9 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 
 from symphony.config import get_settings
-from symphony.infrastructure.database.connection import engine
+from symphony.infrastructure.database.connection import get_engine
 
 settings = get_settings()
+engine = get_engine()
 
 
 @asynccontextmanager
@@ -46,7 +48,7 @@ async def health_check():
         async with engine.connect() as conn:
             result = await conn.execute(text("SELECT 1"))
             result.scalar()
-        
+
         return {
             "status": "healthy",
             "database": "connected",

@@ -37,14 +37,21 @@
   - Vault with name/path validation
 - **Created domain exceptions for error handling**
 - **Created demo script (`just demo-domain-models`) showcasing domain functionality**
-- **Code passes linting (with minor style suggestions)**
+- **Implemented SQLAlchemy ORM models:**
+  - UserProfileDB with unique constraints on username/email
+  - WorkspaceDB with enum type and JSON fields
+  - RepoDB and VaultDB with proper foreign keys
+  - All models have proper relationships and cascade deletes
+- **Created initial database migration (001_initial_schema.py)**
+- **Created demo script (`just demo-database-models`) showing ORM mapping**
+- **Added greenlet dependency for async SQLAlchemy**
+- **Fixed all linting issues and type annotations**
 
 🚧 **Next Steps:**
-1. Create SQLAlchemy ORM models
-2. Generate initial database migration
-3. Implement repository interfaces and concrete implementations
-4. Create API schemas and routes
-5. Implement domain services
+1. Implement repository interfaces and concrete implementations
+2. Create API schemas and routes
+3. Implement domain services
+4. Set up testing infrastructure
 
 ## Notes
 

@@ -16,6 +16,7 @@ console = Console()
 DEMOS = [
     ("Configuration System", "demo_config.py", False),
     ("Domain Models", "demo_domain_models.py", False),
+    ("Database Models & ORM Mapping", "demo_database_models.py", False),
     ("Database Connection", "demo_database.py", True),
     ("API Endpoints", "demo_api.py", True),
 ]
@@ -69,6 +70,8 @@ async def run_all_demos():
         "[bold blue]🎼 Symphony Demo Suite[/bold blue]\n\n"
         "This will demonstrate all implemented features:\n"
         "• Configuration System\n"
+        "• Domain Models with Business Logic\n"
+        "• Database Models & ORM Mapping\n"
         "• Database Connection & Alembic\n"
         "• API Health Check & Endpoints",
         border_style="blue"
@@ -118,10 +121,13 @@ async def run_all_demos():
         "[bold green]✅ Demo Suite Complete![/bold green]\n\n"
         "You've seen:\n"
         "• Pydantic-based configuration with validation\n"
+        "• Domain models with business logic and validation\n"
+        "• SQLAlchemy ORM models with relationships\n"
+        "• Domain-to-database model mapping\n"
         "• Async SQLAlchemy database setup\n"
         "• FastAPI application structure\n"
         "• Health monitoring endpoints\n\n"
-        "[dim]Next: Domain models and repository pattern[/dim]",
+        "[dim]Next: Repository implementations and CRUD operations[/dim]",
         border_style="green"
     ))
 

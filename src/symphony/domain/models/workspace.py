@@ -48,9 +48,7 @@ class Workspace:
         """
         if not self.name or not self.name.strip():
             return False
-        if len(self.name) > 255:
-            return False
-        return True
+        return len(self.name) <= 255
 
     def validate_workspace_type(self) -> bool:
         """Validate workspace type is one of the allowed values."""
@@ -94,10 +92,12 @@ class Workspace:
             resource_id: ID of the global resource
             resource_type: Type of resource
         """
-        if resource_type in self.shared_resources:
-            if resource_id in self.shared_resources[resource_type]:
-                self.shared_resources[resource_type].remove(resource_id)
-                self.updated_at = datetime.now(UTC)
+        if (
+            resource_type in self.shared_resources
+            and resource_id in self.shared_resources[resource_type]
+        ):
+            self.shared_resources[resource_type].remove(resource_id)
+            self.updated_at = datetime.now(UTC)
 
     def update_settings(self, new_settings: dict[str, Any]) -> None:
         """

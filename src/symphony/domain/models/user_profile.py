@@ -59,9 +59,7 @@ class UserProfile:
         local, domain = parts
         if not local or not domain:
             return False
-        if "." not in domain:
-            return False
-        return True
+        return "." in domain
 
     def can_create_workspace(
         self, current_workspace_count: int = 0, max_workspaces: int = 50

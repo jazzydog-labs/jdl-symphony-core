@@ -51,9 +51,7 @@ class Repo:
             return False
         # Check for special characters that might cause issues
         invalid_chars = {"<", ">", ":", '"', "|", "?", "*", "\0"}
-        if any(char in self.name for char in invalid_chars):
-            return False
-        return True
+        return not any(char in self.name for char in invalid_chars)
 
     def validate_path(self) -> bool:
         """
@@ -91,10 +89,7 @@ class Repo:
             return True
 
         # Check for SCP-style SSH URLs (e.g., user@host:path)
-        if ":" in url and not url.startswith("/"):
-            return True
-
-        return False
+        return ":" in url and not url.startswith("/")
 
     def update_remote_url(self, remote_url: str | None) -> None:
         """

@@ -15,6 +15,8 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from symphony.config import get_settings
 from symphony.infrastructure.database.base import Base
+# Import all models to ensure they're registered with metadata
+from symphony.infrastructure.database.models import UserProfileDB, WorkspaceDB, RepoDB, VaultDB  # noqa: F401
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

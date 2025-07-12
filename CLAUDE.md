@@ -10,7 +10,7 @@ Please check all the things you have to do, and before you start doing them chec
 Track progress in `jdl-symphony-core/todo.md`
 See high-level implementation plan in `jdl-symphony-core/project-plan.md`
 
-Current status: Domain models implemented (Commit 3). Next step is to implement database models and migrations (Commit 4).
+Current status: Database models and initial migration implemented (Commit 4). Next step is to implement repository interfaces and concrete implementations (Commit 5).
 
 When resuming work:
 1. Check todo.md for current progress
@@ -43,5 +43,21 @@ This ensures continuity between sessions and helps maintain accurate project sta
 - Created comprehensive exception hierarchy with base classes for common patterns
 - Validation methods return bool for consistency and reusability
 
+### Database Model Implementation
+- Created SQLAlchemy ORM models with proper relationships and cascades
+- Used Mapped[] annotations for better type safety
+- Implemented proper foreign key constraints with CASCADE delete
+- Created conversion functions between domain and database models
+- Added greenlet dependency for async SQLAlchemy support
+- Manual migration created at alembic/versions/001_initial_schema.py
+
+### Demo Mode Configuration
+- Added `demo_mode` flag and `demo_database_url` to Settings
+- Created `get_demo_settings()` helper in `symphony.config.demo`
+- Updated database connection module to support demo mode
+- When `demo_mode=True`, uses in-memory SQLite instead of PostgreSQL
+- Demos are isolated from production database - no risk of data pollution
+- All demos use `get_demo_settings()` to ensure they run in safe mode
+
 ## Creating working demo before each commit
-Before each of your commits, create a fully working demo showing off the features you have added that can be run, end-to-end, with `just demo`. `just demo` runs all of the feature demos, (e.g. `just demo-domain-models`) in
+Before each of your commits, create a fully working demo showing off the features you have added that can be run, end-to-end, with `just demo`. `just demo` runs all of the feature demos, (e.g. `just demo-domain-models`). Test the newly added demo, and all the demos, before commiting, and fix anything needed to make them work.
