@@ -2,6 +2,9 @@ Follow the instructions in backend_spec.md to initialize the repo.
 
 Make sure all the just commands run and the tests pass.
 
+# Before starting implementation
+Please check all the things you have to do, and before you start doing them check that you have the relevant permissins (e.g. write, git, just, etc) to run your commands by attempting to create tmp files in this directory, and then cleaning them up.
+
 ## Implementation Progress
 
 Track progress in `jdl-symphony-core/todo.md`
